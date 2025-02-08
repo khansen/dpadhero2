@@ -266,7 +266,6 @@ void convert_xm_to_btn(const struct xm *xm, const struct xm2btn_options *options
         int marker_count = 0;
         struct marker_info markers[64];
         enum MarkState mark_state = NoMark;
-        int marker_pos;
         /* The 1st pass counts the number of items */
         /* The 2nd pass outputs the data */
         for (pass = 0; pass < 2; ++pass) {
@@ -333,7 +332,6 @@ void convert_xm_to_btn(const struct xm *xm, const struct xm2btn_options *options
                         if (delay != 0) {
                             if (first) {
                                 if (mark_state == BeginMark) {
-                                    marker_pos = pos;
                                     if (pass == 0)
                                         init_marker(&markers[marker_count++], stream.bit_index, order_pos, /*row=*/0);
                                     mark_state = Marking;
@@ -347,7 +345,6 @@ void convert_xm_to_btn(const struct xm *xm, const struct xm2btn_options *options
                             output_delay(&stream, delay, &pos);
                         }
                         if (mark_state == BeginMark) {
-                            marker_pos = pos;
                             if (pass == 0)
                                 init_marker(&markers[marker_count++], stream.bit_index, order_pos, row);
                             mark_state = Marking;

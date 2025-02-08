@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
                     output_filename = &opt[7];
                 } else if (!strncmp("dump-statistics", opt, 15)) {
                     options.log = 1;
-                    memset(target_counts, sizeof(target_counts), 0);
+                    memset(target_counts, 0, sizeof(target_counts));
                     options.target_counts = target_counts;
                 } else if (!strcmp("verbose", opt)) {
                     verbose = 1;
